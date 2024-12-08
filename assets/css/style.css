@@ -1,0 +1,419 @@
+/* Body */
+body {
+    background: var(--background-color);
+    background-size: 40px 40px;
+    background-image: linear-gradient(to right, #040404 1px, transparent 1px),
+        linear-gradient(to bottom, #040404 1px, transparent 1px);
+    color: var(--font-color);
+    font-family: "Work Sans", sans-serif;
+    text-align: left;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Variables */
+:root {
+    --font-color: #FFFFFF;
+    --primary-color: #7851A9;
+    --background-color: #000000;
+}
+
+/* Links */
+a:link,
+a:visited {
+    color: var(--font-color);
+    text-decoration: none;
+}
+
+/* Code */
+code {
+    background-color: #040404;
+    color: var(--primary-color);
+    font-size: 20px;
+}
+
+/* Main */
+.main {
+    margin-top: 100px;
+}
+
+.main h1 {
+    font-size: 48px;
+    margin-bottom: 50px;
+}
+
+.main p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+/* Color */
+.color {
+    color: var(--primary-color);
+}
+
+/* Buttons */
+.button {
+    color: var(--font-color);
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.button2 {
+    color: var(--font-color);
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+/* Socials */
+.socials {
+    margin-top: 20px;
+    margin-left: 10px;
+    float: left;
+    margin-top: 2px;
+}
+
+.socials svg {
+    margin-right: 10px;
+    width: 26px !important;
+    height: 26px !important;
+    transition: transform 0.1s ease;
+}
+
+.socials svg:hover {
+    transform: scale(1.1);
+}
+
+/* Responsivity */
+@media (min-width: 768px) {
+    body {
+        margin-left: 100px;
+        margin-right: 100px;
+    }
+
+    .main {
+        margin-top: 200px;
+        text-align: left;
+    }
+
+    .main h1 {
+        font-size: 64px;
+    }
+
+    .main p {
+        font-size: 20px;
+    }
+
+    .button {
+        font-size: 28px;
+    }
+
+    .socials {
+        float: right;
+        margin-top: -30px;
+    }
+
+    .button {
+        color: var(--font-color);
+        font-size: 16px;
+        font-weight: bold;
+        position: relative;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 1;
+        transition: color 0.3s ease;
+    }
+
+    .button::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        top: 55%;
+        background: var(--primary-color);
+        z-index: -1;
+        transition: top 0.3s ease;
+    }
+
+    .button:hover {
+        color: var(--font-color);
+    }
+
+    .button:hover::before {
+        top: 10px;
+    }
+
+    .button2 {
+        color: var(--font-color);
+        font-size: 16px;
+        font-weight: bold;
+        position: relative;
+        padding: 10px;
+        cursor: pointer;
+        z-index: 1;
+        transition: color 0.3s ease;
+    }
+
+    .button2::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        top: 50%;
+        background: var(--primary-color);
+        z-index: -1;
+        transition: top 0.3s ease;
+    }
+
+    .button2:hover {
+        color: var(--font-color);
+    }
+
+    .button2:hover::before {
+        top: 10px;
+    }
+}
+@media (min-width: 1024px) {
+    body {
+        margin-left: 120px;
+        margin-right: 150px;
+    }
+
+    .main {
+        margin-top: 150px;
+    }
+
+    .main h1 {
+        font-size: 80px;
+    }
+
+    .main p {
+        margin-top: -40px;
+        font-size: 24px;
+    }
+
+    .button {
+        font-size: 32px;
+    }
+
+    .button2 {
+        font-size: 32px;
+    }
+
+    .socials {
+        float: right;
+        margin-top: -30px;
+    }
+}
+
+@media (max-width: 767px) {
+    .menu-toggle {
+        display: block !important;
+        width: 30px;
+        height: 20px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    .bar {
+        width: 100%;
+        height: 3px;
+        background-color: var(--font-color);
+        margin: 5px auto;
+        transition: all 0.3s ease;
+    }
+
+    .menu-open .bar:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+    }
+
+    .menu-open .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-open .bar:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .menu a {
+        display: block;
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        font-size: 20px;
+        text-align: center;
+        color: var(--background-color);
+        transition: background-color 0.3s ease;
+    }
+
+    .menu a {
+        cursor: pointer;
+    }
+
+    .vyhledavac {
+        display: none;
+    }
+}
+
+@media (max-width: 767px) {
+    .menu {
+        display: none !important;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        z-index: 999;
+    }
+
+    .menu.open {
+        display: block !important;
+        background: #F1F1F1;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0px 10px 70px var(--background-color);
+    }
+    
+    .menu.open a {
+        cursor: pointer;
+    }
+}
+
+/* Loader */
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+}
+
+.loader {
+    border: 8px solid var(--font-color);
+    border-top: 8px solid var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+/* Animations */
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Dovednosti */
+.dovednost {
+    margin-bottom: 15px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.dovednost-name {
+    margin-bottom: 5px;
+}
+
+.dovednost-bar {
+    height: 17px;
+    background-color: transparent;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.dovednost-progress {
+    height: 100%;
+    width: 0;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    transition: width 1s ease-in-out;
+}
+
+.dovednost-first {
+    margin-top: -35px;
+}
+
+/* Menu */
+.menu-toggle {
+    display: none;
+}
+
+.menu {
+    display: block;
+}
+
+/* Apps */
+.apps {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.apps img {
+    width: 70px;
+    margin: 15px;
+    filter: grayscale(100%);
+    transition: all 0.2s ease;
+}
+
+.apps img:hover {
+    filter: none !important;
+}
+
+/* Navody */
+.navod {
+    background: #090909;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding: 7px;
+    padding-bottom: 0px;
+    padding-left: 30px;
+    transition: all 0.2s ease;
+}
+
+.navod h3 {
+    top: -10px;
+    position: relative;
+    font-size: 32px;
+}
+
+.navod span {
+    top: -30px;
+    position: relative;
+}
+
+.navod:hover {
+    transform: scale(1.02);
+}
+
+.vyhledavac {
+    float: right;
+    margin-top: -120px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #040404;
+    color: var(--font-color);
+    border: none;
+    font-size: 20px;
+}
