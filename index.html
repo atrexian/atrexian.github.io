@@ -358,19 +358,17 @@
             <b>Změna hesla uživatele root:</b><br><br>
             <code> passwd </code><br>
             <b>Instalace GRUB:</b><br><br>
-            <code> grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB </code><br>
+            <code> grub-install --target=x86_64-efi --efi-directory=/boot/ </code><br>
             <code> grub-mkconfig -o /boot/grub/grub.cfg </code><br><br>
 
             <h2>6. Dokončení instalace</h2>
-            <b>Vytvoření uživatele:</b><br><br>
-            <code> useradd -m -G wheel uzivatel </code><br>
-            <code> passwd uzivatel </code><br><br>
             <b>Povolení síťových služeb:</b><br><br>
-            <code> systemctl enable NetworkManager </code><br>
-            <code> systemctl enable avahi-daemon </code><br><br>
+            <code> systemctl enable NetworkManager.service </code><br>
+            <code> systemctl enable avahi-daemon.service </code><br><br>
             <b>Restart systému:</b><br><br>
             <code> exit </code><br>
-            <code> umount -R /mnt </code><br>
+            <code> umount /mnt/boot </code><br>
+            <code> umount /mnt/ </code><br>
             <code> reboot </code><br><br>
 
             <h2>9. První přihlášení do systému</h2>
