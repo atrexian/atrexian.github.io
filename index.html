@@ -261,20 +261,20 @@
             <p>Návod na instalaci Arch Linuxu s grafickým prostředím GNOME nebo KDE Plasma.
             <h2>1. Nastavení připojení k internetu</h2>
             Instalace probíhá prostřednictvím internetu, proto je nutné zajistit stabilní připojení:<br><br>
-            <b>Ověření připojení:</b><br><br>
+            Ověříme připojení:<br><br>
             <code> ping google.com </code><br><br>
             Pro připojení k Wi-Fi použijeme nástroj <span class="color">iwctl</span>. Návod najdete <a href="https://wiki.archlinux.org/title/iwd" title="ZDE" target="_blank" rel="follow noopener">ZDE</a>.<br><br>
 
             <h2>2. Nastavení klávesnice a času</h2>
-            <b>Nastavení českého rozložení klávesnice:</b><br><br>
+            Nastavíme české rozložení klávesnice:<br><br>
             <code> loadkeys cz </code><br><br>
-            <b>Synchronizace času:</b><br><br>
+            Synchronizace času:<br><br>
             <code> timedatectl set-ntp true </code><br><br>
 
             <h2>3. Příprava disku</h2>
-            <b>Identifikace disků:</b><br><br>
+            Identifikace disků:<br><br>
             <code> lsblk </code><br><br>
-            <b>Správa oddílů:</b><br><br>
+            Správa oddílů:<br><br>
             <code> cfdisk /dev/sda </code><br><br>
             Vytvořte oddíly podle tabulky:<br><br>
             <table>
@@ -308,32 +308,32 @@
                 </tbody>
             </table>
             <br>
-            <b>Formátování oddílů:</b><br><br>
+            Formátování oddílů:<br><br>
             <code> mkfs.fat -F 32 /dev/sda1 </code><br>
             <code> mkswap /dev/sda2 </code><br>
             <code> swapon /dev/sda2 </code><br>
             <code> mkfs.ext4 /dev/sda3 </code><br><br>
-            <b>Připojení oddílů:</b><br><br>
+            Připojení oddílů:<br><br>
             <code> mount /dev/sda3 /mnt/ </code><br>
             <code> cd /mnt </code><br>
             <code> mkdir boot </code><br>
             <code> mount /dev/sda1 boot/ </code><br><br>
 
             <h2>4. Instalace systému</h2>
-            <b>Aktualizace mirrorlistu:</b><br><br>
+            Aktualizace mirrorlistu:<br><br>
             <code> reflector -c Czechia > /etc/pacman.d/mirrorlist </code><br><br>
-            <b>Instalace základních balíčků:</b><br><br>
+            Instalace základních balíčků:<br><br>
             <code> pacstrap -K /mnt base base-devel linux linux-firmware linux-headers nano git grub efibootmgr networkmanager avahi </code><br><br>
-            <b>Vytvoření souboru fstab:</b><br><br>
+            Vytvoření souboru fstab:<br><br>
             <code> genfstab -U /mnt >> /mnt/etc/fstab </code><br><br>
-            <b>Přepnutí do nového systému:</b><br><br>
+            Přepnutí do nového systému:<br><br>
             <code> arch-chroot /mnt </code><br><br>
 
             <h2>5. Konfigurace systému</h2>
-            <b>Nastavení časového pásma:</b><br><br>
+            Nastavení časového pásma:<br><br>
             <code> ln -sf /usr/share/zoneinfo/Europe/Prague /etc/localtime </code><br><br>
             <code> hwclock --systohc </code><br><br>
-            <b>Generování locales:</b><br><br>
+            Generování locales:<br><br>
             Upravit soubor <span class="color">/etc/locale.gen</span> a odkomentovat řádek:<br><br>
             <code> cs_CZ.UTF-8 UTF-8 </code><br><br>
             Poté vygenerovat locales:<br><br>
@@ -341,7 +341,7 @@
             Nastavit LANG:<br><br>
             <code> echo "LANG=cs_CZ.UTF-8" > /etc/locale.conf </code><br><br>
             <code> echo "KEYMAP=cz" > /etc/vconsole.conf </code><br><br>
-            <b>Hostname (,,hostname" nahraďte za jméno Vašeho počítače):</b><br><br>
+            Hostname (,,hostname" nahraďte za jméno Vašeho počítače):<br><br>
             <code> echo "hostname" > /etc/hostname </code><br><br>
             Pro zajištění správného fungování síťových služeb je potřeba nakonfigurovat soubor <span class="color">/etc/hosts</span>. Otevřete soubor v editoru dle vašeho výběru (například `nano`) příkazem:<br><br>
             <code>nano /etc/hosts</code><br><br>
@@ -353,19 +353,19 @@
             </code><br>
             Uložte a zavřete soubor klávesovou zkratkou <span class="color">CTRL+X</span>.
             <br><br>
-            <b>Vytvoření Initramfs:</b><br><br>
+            Vytvoření Initramfs:<br><br>
             <code> mkinitcpio -P </code><br><br>
-            <b>Změna hesla uživatele root:</b><br><br>
+            Změna hesla uživatele root:<br><br>
             <code> passwd </code><br><br>
-            <b>Instalace GRUB:</b><br><br>
+            Instalace GRUB:<br><br>
             <code> grub-install --target=x86_64-efi --efi-directory=/boot/ </code><br>
             <code> grub-mkconfig -o /boot/grub/grub.cfg </code><br><br>
 
             <h2>6. Dokončení instalace</h2>
-            <b>Povolení síťových služeb:</b><br><br>
+            Povolení síťových služeb:<br><br>
             <code> systemctl enable NetworkManager.service </code><br>
             <code> systemctl enable avahi-daemon.service </code><br><br>
-            <b>Restart systému:</b><br><br>
+            Restart systému:<br><br>
             <code> exit </code><br>
             <code> umount /mnt/boot </code><br>
             <code> umount /mnt/ </code><br>
@@ -392,7 +392,7 @@
             <code>nano /etc/sudoers</code><br><br>
             V souboru najděte sekci <strong>User privilege specification</strong> a přidejte tento řádek:<br><br>
             <code>uzivatel ALL=(ALL:ALL) ALL</code><br><br>
-            Změny uložte kombinací <strong>CTRL+S</strong> a program ukončete kombinací <strong>CTRL+X</strong>.<br>
+            Změny uložte kombinací <strong>CTRL+S</strong> a program ukončete kombinací <strong>CTRL+X</strong>.<br><br>
 
             <h2>8. Instalace GNOME</h2>
             GNOME můžete nainstalovat následujícím příkazem:<br><br>
