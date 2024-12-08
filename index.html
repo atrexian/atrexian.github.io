@@ -161,6 +161,12 @@
             <h1>📚 Návody</h1>
             <input type="text" id="search" class="vyhledavac" placeholder="Hledat mezi návody..." onkeyup="searchNavod()">
             <div class="navody">
+                <a href="#4" class="navodlink" onclick="return false;">
+                    <div class="navod">
+                        <h3>Instalace Arch Linuxu</h3>
+                        <span>12. prosince 2024 &bull; Návod na instalaci Arch Linuxu s grafickým prostředím GNOME nebo KDE Plasma.</span>
+                    </div>
+                </a>
                 <a href="#3" class="navodlink" onclick="return false;">
                     <div class="navod">
                         <h3>Instalace LAMP na Debianu 12</h3>
@@ -237,6 +243,211 @@
             <code> sudo apt install php libapache2-mod-php php-mysql </code><br><br>
             A máme hotovo. Adresář webových stránek je implicitně v <span class="color">/var/www/html</span>. Obsah se poté zobrazuje při zadání IP adresy zařízení do Vašeho prohlížeče.<br><br><br>
             </p>
+        </div>
+    </div>
+    <div id="4" class="content" style="display: none;">
+        <div class="main">
+            <h3 id="nastaveni-pripojeni-k-internetu">Nastavení připojení k internetu</h3>
+            <p>Instalace probíhá prostřednictvím internetu, proto je nutné zajistit stabilní připojení. Pro ověření nebo nastavení připojení postupujeme takto:</p>
+
+            <ol>
+            <li>
+            <p><strong>Ověření připojení k internetu pomocí příkazu <code>ping</code></strong></p>
+            <p>Pomocí příkazu <code>ping</code> na server google.com zjistíme, zda máme přístup k internetu. Kombinací kláves <strong>CTRL+C</strong> proces ukončíme.</p>
+            <div class="codeblock">
+                <p>ping google.com</p>
+            </div>
+            </li>
+            <li>
+            <p><strong>Nastavení Wi-Fi připojení pomocí <code>iwctl</code></strong></p>
+            <p>Pro připojení k Wi-Fi použijeme nástroj <code>iwctl</code>. Detailní informace k tomuto nástroji najdete <a href="https://wiki.archlinux.org/title/iwd" title="ZDE" target="_blank" rel="follow noopener">ZDE</a>. Po nastavení připojení opět ověříme funkčnost příkazem <code>ping</code>.</p>
+            </li>
+            </ol>
+
+            <h3 id="nastaveni-klavesnice-a-casu">Nastavení klávesnice a času</h3>
+            <ol>
+            <li>
+            <p><strong>Rozložení klávesnice</strong></p>
+            <p>Pomocí příkazu <code>loadkeys</code> nastavíme české rozložení klávesnice:</p>
+            <div class="codeblock">
+                <p>loadkeys cz</p>
+            </div>
+            </li>
+            <li>
+            <p><strong>Synchronizace času</strong></p>
+            <p>Pro správné nastavení času spustíme synchronizaci pomocí příkazu <code>timedatectl</code>:</p>
+            <div class="codeblock">
+                <p>timedatectl set-ntp true</p>
+            </div>
+            </li>
+            </ol>
+
+            <h3 id="priprava-disku">Příprava disku</h3>
+            <ol>
+            <li>
+            <p><strong>Identifikace disku</strong></p>
+            <p>Pro zjištění dostupných disků použijeme příkaz <code>lsblk</code>. V našem příkladu se jedná o disk označený jako <strong>sda</strong>.</p>
+            <div class="codeblock">
+                <p>lsblk</p>
+            </div>
+            </li>
+            <li>
+            <p><strong>Vytvoření oddílů</strong></p>
+            <p>Pro správu oddílů použijeme nástroj <code>cfdisk</code>. Spustíme ho pro disk <code>/dev/sda</code>:</p>
+            <div class="codeblock">
+                <p>cfdisk /dev/sda</p>
+            </div>
+            <p>V nástroji vytvoříme následující oddíly:</p>
+            <table>
+            <thead>
+            <tr>
+            <th>Oddíl</th>
+            <th>Formát</th>
+            <th>Kapacita</th>
+            <th>Popis</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>sda1</td>
+            <td>fat32</td>
+            <td>512MB</td>
+            <td>Boot - GRUB</td>
+            </tr>
+            <tr>
+            <td>sda2</td>
+            <td>-</td>
+            <td>16GB</td>
+            <td>SWAP</td>
+            </tr>
+            <tr>
+            <td>sda3</td>
+            <td>ext4</td>
+            <td>Zbytek</td>
+            <td>Root - systém</td>
+            </tr>
+            </tbody>
+            </table>
+            </li>
+            <li>
+            <p><strong>Formátování oddílů</strong></p>
+            <p>Vytvořené oddíly naformátujeme následujícími příkazy:</p>
+            <div class="codeblock">
+                <p>mkfs.fat -F 32 /dev/sda1</p>
+                <p>mkswap /dev/sda2</p>
+                <p>swapon /dev/sda2</p>
+                <p>mkfs.ext4 /dev/sda3</p>
+            </div>
+            </li>
+            <li>
+            <p><strong>Připojení oddílů</strong></p>
+            <p>Oddíly připojíme do složky <code>/mnt</code>:</p>
+            <div class="codeblock">
+                <p>mount /dev/sda3 /mnt</p>
+                <p>mkdir /mnt/boot</p>
+                <p>mount /dev/sda1 /mnt/boot</p>
+            </div>
+            </li>
+            </ol>
+
+            <h3 id="instalace-systemu">Instalace systému</h3>
+            <ol>
+            <li>
+            <p><strong>Aktualizace mirrorlistu</strong></p>
+            <p>Pro optimalizaci zrcadel použijeme příkaz:</p>
+            <div class="codeblock">
+                <p>reflector -c Czechia > /etc/pacman.d/mirrorlist</p>
+            </div>
+            </li>
+            <li>
+            <p><strong>Instalace základních balíčků</strong></p>
+            <p>Instalaci systému provedeme pomocí příkazu:</p>
+            <div class="codeblock">
+                <p>pacstrap -K /mnt base base-devel linux linux-firmware linux-headers nano git grub efibootmgr networkmanager avahi</p>
+            </div>
+            </li>
+            <li>
+            <p><strong>Vytvoření souboru <code>fstab</code></strong></p>
+            <p>Zapíšeme strukturu připojených oddílů:</p>
+            <div class="codeblock">
+                <p>genfstab -U /mnt >> /mnt/etc/fstab</p>
+            </div>
+            </li>
+            <li>
+            <p><strong>Přepnutí do nového systému</strong></p>
+            <p>Přepneme se do prostředí nově nainstalovaného systému:</p>
+            <div class="codeblock">
+                <p>arch-chroot /mnt</p>
+            </div>
+            </li>
+            </ol>
+
+            <h3 id="konfigurace-systemu">Konfigurace systému</h3>
+            <ol>
+            <li>
+            <p><strong>Nastavení časového pásma</strong></p>
+            <p>Nastavíme správné časové pásmo:</p>
+            <div class="codeblock">
+                <p>ln -sf /usr/share/zoneinfo/Europe/Prague /etc/localtime</p>
+            </div>
+            </li>
+            <li>
+            <p><strong>Generování souboru <code>locale</code></strong></p>
+            <p>Odkomentujeme řádek <code>cs_CZ.UTF-8 UTF-8</code> v souboru <code>/etc/locale.gen</code> a poté vygenerujeme locales:</p>
+            <div class="codeblock">
+                <p>locale-gen</p>
+            </div>
+            <p>Do souboru <code>/etc/locale.conf</code> zapíšeme následující:</p>
+            <div class="codeblock">
+                <p>echo "LANG=cs_CZ.UTF-8" > /etc/locale.conf</p>
+            </div>
+            </li>
+            <li>
+            <p><strong>Hostname</strong></p>
+            <p>Nastavíme název zařízení:</p>
+            <div class="codeblock">
+                <p>echo "nazev_zarizeni" > /etc/hostname</p>
+            </div>
+            </li>
+            <li>
+            <p><strong>GRUB</strong></p>
+            <p>Na disk nainstalujeme zavaděč systému GRUB:</p>
+            <div class="codeblock">
+                <p>grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB</p>
+                <p>grub-mkconfig -o /boot/grub/grub.cfg</p>
+            </div>
+            </li>
+            </ol>
+
+            <h3 id="dokončení-instalace">Dokončení instalace</h3>
+            <ol>
+            <li>
+            <p><strong>Vytvoření uživatelského účtu</strong></p>
+            <p>Vytvoříme nového uživatele a nastavíme heslo:</p>
+            <div class="codeblock">
+                <p>useradd -m -G wheel uzivatel</p>
+                <p>passwd uzivatel</p>
+            </div>
+            </li>
+            <li>
+            <p><strong>Povolení síťových služeb</strong></p>
+            <p>Zapneme služby:</p>
+            <div class="codeblock">
+                <p>systemctl enable NetworkManager</p>
+                <p>systemctl enable avahi-daemon</p>
+            </div>
+            </li>
+            <li>
+            <p><strong>Restart</strong></p>
+            <p>Po dokončení instalace restartujeme systém:</p>
+            <div class="codeblock">
+                <p>exit</p>
+                <p>umount -R /mnt</p>
+                <p>reboot</p>
+            </div>
+            </li>
+            </ol>
+
         </div>
     </div>
     <script src="assets/js/main.js"></script>
