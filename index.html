@@ -340,7 +340,8 @@
             <code> locale-gen </code><br><br>
             Nastavit LANG:<br><br>
             <code> echo "LANG=cs_CZ.UTF-8" > /etc/locale.conf </code><br><br>
-            <b>Hostname (,,hostname" nahraďte za jméno Vašeho počítače):</b><br><br>
+            <code> echo "KEYMAP=cz" > /etc/vconsole.conf </code><br><br>
+            <b>Hostname</b> (,,hostname" nahraďte za jméno Vašeho počítače):<br><br>
             <code> echo "hostname" > /etc/hostname </code><br><br>
             Pro zajištění správného fungování síťových služeb je potřeba nakonfigurovat soubor <span class="color">/etc/hosts</span>. Otevřete soubor v editoru dle vašeho výběru (například `nano`) příkazem:<br><br>
             <code>sudo nano /etc/hosts</code><br><br>
