@@ -250,7 +250,7 @@ code {
     }
 
     .vyhledavac {
-        margin-top: -50px !important;;
+        display: none;
     }
 }
 
