@@ -248,6 +248,10 @@ code {
         float: left;
         margin-top: 5px;
     }
+
+    .vyhledavac {
+        margin-top: -50px !important;;
+    }
 }
 
 @media (max-width: 1200px) {
