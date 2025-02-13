@@ -5,8 +5,8 @@
 */
 :root {
     --font-color: #FFFFFF;
-    --primary-color: #5D3FD3;
-    --background-color: #000000;
+    --primary-color: #40B5AD;
+    --background-color: #121212;
 }
 
 /*
@@ -16,8 +16,6 @@
 */
 body {
     background: var(--background-color);
-    background-size: 40px 40px;
-    background-image: linear-gradient(to right, #040404 1px, transparent 1px), linear-gradient(to bottom, #040404 1px, transparent 1px);
     color: var(--font-color);
     font-family: "Work Sans", sans-serif;
     text-align: left;
@@ -33,7 +31,6 @@ a:link, a:visited {
 
 /* Code */
 code {
-    background-color: #040404;
     color: var(--primary-color);
     font-size: 20px;
 }
@@ -362,7 +359,7 @@ code {
 }
 
 .navod {
-    background: #090909;
+    background: #1A1A1A;
     border-radius: 10px;
     margin-bottom: 30px;
     padding: 7px 30px 0;
@@ -389,7 +386,7 @@ code {
     margin-top: -120px;
     padding: 10px 15px;
     border-radius: 5px;
-    background-color: #040404;
+    background-color: #1A1A1A;
     color: var(--font-color);
     border: none;
     font-size: 20px;
