@@ -1,0 +1,393 @@
+/*
+============================
+   Variables
+============================
+*/
+:root {
+    --font-color: #FFFFFF;
+    --primary-color: #40B5AD;
+    --background-color: #121212;
+}
+
+/*
+============================
+   Global Styles
+============================
+*/
+body {
+    background: var(--background-color);
+    color: var(--font-color);
+    font-family: "Work Sans", sans-serif;
+    text-align: left;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Links */
+a:link, a:visited {
+    color: var(--font-color);
+    text-decoration: none;
+}
+
+/* Code */
+code {
+    color: var(--primary-color);
+    font-size: 20px;
+}
+
+/*
+============================
+   Main Content
+============================
+*/
+.main {
+    margin-top: 100px;
+}
+
+.main h1 {
+    font-size: 48px;
+    margin-bottom: 50px;
+}
+
+.main p {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+.color {
+    color: var(--primary-color);
+}
+
+/*
+============================
+   Buttons
+============================
+*/
+.button, .button2 {
+    color: var(--font-color);
+    font-size: 16px;
+    font-weight: bold;
+    position: relative;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.button::before, .button2::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    top: 55%;
+    background: var(--primary-color);
+    z-index: -1;
+    transition: top 0.3s ease;
+}
+
+.button:hover::before, .button2:hover::before {
+    top: 10px;
+}
+
+/*
+============================
+   Socials
+============================
+*/
+.socials {
+    margin-top: 20px;
+    margin-left: 10px;
+    float: left;
+}
+
+.socials svg {
+    margin-right: 10px;
+    width: 26px !important;
+    height: 26px !important;
+    transition: transform 0.1s ease;
+}
+
+.socials svg:hover {
+    transform: scale(1.1);
+}
+
+/*
+============================
+   Responsivity
+============================
+*/
+@media (min-width: 768px) {
+    body {
+        margin: 0 100px;
+    }
+
+    .main {
+        margin-top: 200px;
+    }
+
+    .main h1 {
+        font-size: 64px;
+    }
+
+    .main p {
+        font-size: 20px;
+    }
+
+    .button, .button2 {
+        font-size: 28px;
+    }
+
+    .socials {
+        float: right;
+        margin-top: -30px;
+    }
+}
+
+@media (min-width: 1024px) {
+    body {
+        margin: 0 120px;
+    }
+
+    .main {
+        margin-top: 150px;
+    }
+
+    .main h1 {
+        font-size: 75px;
+    }
+
+    .main p {
+        margin-top: -40px;
+        font-size: 24px;
+    }
+
+    .button, .button2 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 1024px) {
+    /* Hamburger Menu */
+    .menu-toggle {
+        display: block !important;
+        width: 30px;
+        height: 20px;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    .bar {
+        width: 100%;
+        height: 3px;
+        background-color: var(--font-color);
+        margin: 5px auto;
+        transition: all 0.3s ease;
+    }
+
+    .menu-open .bar:nth-child(1) {
+        transform: translateY(6px) rotate(45deg);
+    }
+
+    .menu-open .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-open .bar:nth-child(3) {
+        transform: translateY(-6px) rotate(-45deg);
+    }
+
+    .menu {
+        display: none !important;
+        position: absolute;
+        top: 70px;
+        right: 20px;
+        z-index: 999;
+    }
+
+    .menu.open {
+        display: block !important;
+        background: #F1F1F1;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: 0px 10px 70px var(--background-color);
+    }
+
+    .menu a {
+        display: block;
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        font-size: 20px;
+        text-align: center;
+        color: var(--background-color);
+        transition: background-color 0.3s ease;
+    }
+
+    .button::before, .button2::before {
+        content: "";
+        position: absolute;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        top: 55%;
+        background: transparent;
+        z-index: -1;
+        transition: top 0.3s ease;
+    }
+    
+    .button:hover::before, .button2:hover::before {
+        top: 10px;
+    }
+
+    .socials {
+        float: left;
+        margin-top: 5px;
+    }
+
+    .vyhledavac {
+        display: none;
+    }
+}
+
+@media (max-width: 1200px) {
+    .menu-toggle {
+        display: block !important;
+    }
+
+    .menu {
+        display: none !important;
+    }
+
+    .menu.open {
+        display: block !important;
+    }
+}
+
+/*
+============================
+   Loader
+============================
+*/
+.loader-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+}
+
+.loader {
+    border: 8px solid var(--font-color);
+    border-top: 8px solid var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/*
+============================
+   Skills
+============================
+*/
+.dovednost {
+    margin-bottom: 15px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.dovednost-name {
+    margin-bottom: 5px;
+}
+
+.dovednost-name img {
+    width: 14px;
+    margin-bottom: -2px;
+}
+
+.dovednost-bar {
+    height: 17px;
+    background-color: transparent;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.dovednost-progress {
+    height: 100%;
+    width: 0;
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    transition: width 1s ease-in-out;
+}
+
+/*
+============================
+   Other Components
+============================
+*/
+.apps {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.apps img {
+    width: 70px;
+    margin: 15px;
+    filter: grayscale(100%);
+    transition: all 0.2s ease;
+}
+
+.apps img:hover {
+    filter: none !important;
+}
+
+.navod {
+    background: #1A1A1A;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    padding: 7px 30px 0;
+    transition: all 0.2s ease;
+}
+
+.navod h3 {
+    position: relative;
+    top: -10px;
+    font-size: 32px;
+}
+
+.navod span {
+    position: relative;
+    top: -30px;
+}
+
+.navod:hover {
+    transform: scale(1.02);
+}
+
+.vyhledavac {
+    float: right;
+    margin-top: -120px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #1A1A1A;
+    color: var(--font-color);
+    border: none;
+    font-size: 20px;
+}
