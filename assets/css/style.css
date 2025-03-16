@@ -391,3 +391,11 @@ code {
     border: none;
     font-size: 20px;
 }
+
+.theme-wallpaper {
+    width: 100%;
+}
+
+.theme-pfp {
+    width: 500px;
+}
