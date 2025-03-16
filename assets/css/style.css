@@ -394,10 +394,12 @@ code {
 
 .theme-wallpaper {
     width: 100%;
-    border: 3px solid black;
+    border: 3px solid #a251d4;
+    border-radius: 5px;
 }
 
 .theme-pfp {
     width: 30%;
-    border: 3px solid black;
+    border: 3px solid #a251d4;
+    border-radius: 5px;
 }
