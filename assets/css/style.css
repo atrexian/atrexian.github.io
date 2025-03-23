@@ -5,8 +5,8 @@
 */
 :root {
     --font-color: #FFFFFF;
-    --primary-color: #32cd33;
-    --background-color: #121212;
+    --primary-color: #1793d1;
+    --background-color: #02131D;
 }
 
 /*
@@ -359,7 +359,7 @@ code {
 }
 
 .navod {
-    background: #1c1c1c;
+    background: #0D2A42;
     border-radius: 10px;
     margin-bottom: 30px;
     padding: 7px 30px 0;
@@ -386,7 +386,7 @@ code {
     margin-top: -120px;
     padding: 10px 15px;
     border-radius: 5px;
-    background-color: #1c1c1c;
+    background-color: #0D2A42;
     color: var(--font-color);
     border: none;
     font-size: 20px;
