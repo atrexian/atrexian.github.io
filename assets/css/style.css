@@ -156,6 +156,10 @@ code {
         font-size: 75px;
     }
 
+    .main h3 {
+        font-size: 40px;
+    }
+
     .main p {
         margin-top: -40px;
         font-size: 24px;
