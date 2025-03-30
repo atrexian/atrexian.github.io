@@ -395,3 +395,7 @@ code {
     border: none;
     font-size: 20px;
 }
+
+.homelab {
+    width: 100%;
+}
