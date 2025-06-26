@@ -1,0 +1,448 @@
+/* Root */
+html {
+	scroll-behavior: smooth;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Inter Tight", sans-serif;
+	font-size: 1.2rem;
+	background: black;
+	color: white;
+	scroll-behavior: smooth;
+}
+
+/* Stars */
+.stars {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background: black url('data:image/svg+xml;utf8,<svg width="50" height="50" xmlns="http://www.w3.org/2000/svg"><circle cx="2.5" cy="2.5" r="2.5" fill="rgba(100, 100, 100, 0.8)" /></svg>') repeat;
+	background-size: 2rem 2rem;
+	animation: moveStars 200s linear infinite;
+	mask-image: radial-gradient(circle at top,
+			rgba(255, 255, 255, 0.6) 0%,
+			rgba(255, 255, 255, 0.1) 60%);
+	-webkit-mask-image: radial-gradient(circle at top,
+			rgba(255, 255, 255, 0.6) 0%,
+			rgba(255, 255, 255, 0.1) 60%);
+	z-index: -1;
+	opacity: 0;
+	transition: opacity 1s ease-in;
+}
+
+.stars.visible {
+	opacity: 1;
+}
+
+@keyframes moveStars {
+	from {
+		background-position: 0 0;
+	}
+
+	to {
+		background-position: -10000px 5000px;
+	}
+}
+
+/* Nav */
+nav {
+	background: rgba(0, 0, 0, 0);
+	transition: background 1s ease, backdrop-filter 1s ease;
+	backdrop-filter: none;
+	padding: 1rem 2rem;
+	position: fixed;
+	width: 100%;
+	top: 0;
+	z-index: 10;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+nav.scrolled {
+	background: rgba(0, 0, 0, 0.7);
+	backdrop-filter: blur(10px);
+}
+
+nav .logo {
+	font-family: "Space Grotesk", sans-serif;
+	letter-spacing: -0.1rem;
+	font-weight: bold;
+	font-size: 1.5rem;
+}
+
+nav ul {
+	list-style: none;
+	display: flex;
+	gap: 1.5rem;
+}
+
+nav a {
+	font-family: "Space Grotesk", sans-serif;
+	letter-spacing: -0.05rem;
+	position: relative;
+	color: white;
+	text-decoration: none;
+	font-weight: bold;
+}
+
+nav a::after {
+	content: "";
+	position: absolute;
+	bottom: -4px;
+	left: 50%;
+	width: 0;
+	height: 2px;
+	background-color: white;
+	transition: width 0.4s ease, left 0.4s ease;
+	transform: translateX(-50%);
+}
+
+nav a:hover::after,
+nav a.active::after {
+	width: 100%;
+	left: 50%;
+}
+
+/* Menu */
+.menu-toggle {
+	display: none;
+	flex-direction: column;
+	cursor: pointer;
+	gap: 5px;
+}
+
+.menu-toggle span {
+	background: white;
+	height: 3px;
+	width: 25px;
+	border-radius: 3px;
+}
+
+/* Header */
+header {
+	height: 80vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: 2rem;
+}
+
+header h1 {
+	font-family: "Space Grotesk", sans-serif;
+	font-size: 5rem;
+	letter-spacing: -0.3rem;
+}
+
+/* Section */
+section {
+	padding: 5rem 2rem;
+	max-width: 900px;
+	margin: auto;
+}
+
+section h2 {
+	font-family: "Space Grotesk", sans-serif;
+	font-size: 2.5rem;
+	margin-bottom: 1rem;
+	letter-spacing: -0.15rem;
+}
+
+section h3 {
+	font-family: "Space Grotesk", sans-serif;
+	font-size: 1.5rem;
+	margin-bottom: 1rem;
+	letter-spacing: -0.05rem;
+}
+
+/* Skills */
+.skills-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+	gap: 1rem;
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.skill-box {
+	background: rgba(255, 255, 255, 0.1);
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+	border: 1px solid #555;
+	padding: 1rem;
+	border-radius: 8px;
+	text-align: center;
+	transition: box-shadow 0.3s ease, background 0.3s ease;
+	color: #eee;
+}
+
+/* Projects */
+#projects {
+	padding: 40px;
+	max-width: 900px;
+	margin: auto;
+	color: #eee;
+}
+
+#projects h2 {
+	text-align: center;
+	margin-bottom: 40px;
+	margin-top: 40px;
+}
+
+.timeline-container {
+	position: relative;
+	padding: 40px 0;
+	max-width: 900px;
+	margin: 0 auto;
+}
+
+.timeline-line {
+	position: absolute;
+	top: 40px;
+	bottom: 40px;
+	left: 50%;
+	width: 4px;
+	background: white;
+	transform: translateX(-50%);
+	border-radius: 2px;
+}
+
+.timeline-item {
+	position: relative;
+	width: 45%;
+	padding: 20px;
+	box-sizing: border-box;
+}
+
+.timeline-item.left {
+	left: 0;
+}
+
+.timeline-item.right {
+	left: 55%;
+}
+
+.timeline-item .content {
+	background: rgba(255, 255, 255, 0.1);
+	padding: 15px 20px;
+	border-radius: 8px;
+	border: 1px solid #555;
+	color: #eee;
+	box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+	position: relative;
+	margin-right: -30px;
+    margin-left: -30px;
+}
+
+.timeline-item.left .content::after {
+	content: "";
+	position: absolute;
+	top: 20px;
+	right: -42px;
+	width: 20px;
+	height: 20px;
+	background: white;
+	border-radius: 50%;
+	box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.timeline-item.right .content::after {
+	content: "";
+	position: absolute;
+	top: 20px;
+	left: -42px;
+	width: 20px;
+	height: 20px;
+	background: white;
+	border-radius: 50%;
+	box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+}
+
+.timeline-item.left:nth-child(even),
+.timeline-item.right:nth-child(odd) {
+	margin-top: -10px;
+}
+
+.timeline-item.left:nth-child(odd),
+.timeline-item.right:nth-child(even) {
+	margin-top: 0;
+}
+
+.timeline-item h3 {
+	margin: 0 0 6px;
+	font-weight: 700;
+	font-size: 1.2rem;
+	color: #fff;
+}
+
+.timeline-item p {
+	margin: 0;
+	font-size: 1rem;
+	line-height: 1.4;
+	color: #ccc;
+}
+
+/* Contact */
+.contact-buttons {
+	display: flex;
+	gap: 1rem;
+	margin-top: 1rem;
+}
+
+.contact-btn {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 0.6rem 1rem;
+	background: rgba(255, 255, 255, 0.1);
+	color: white;
+	font-weight: bold;
+	border-radius: 8px;
+	text-decoration: none;
+	transition: background-color 0.3s ease;
+}
+
+.contact-btn.email {
+	background: #d49202;
+}
+
+.contact-btn.facebook {
+	background: #3b5998;
+}
+
+.contact-btn.instagram {
+	background: #e1306c;
+}
+
+.contact-btn.linkedin {
+	background: #0a66c2;
+}
+
+.contact-btn.discord {
+	background: #5865f2;
+}
+
+.contact-btn.github {
+	background: #181717;
+}
+
+.contact-btn.email:hover {
+	background: #b37b03;
+}
+
+.contact-btn.facebook:hover {
+	background: #2d4373;
+}
+
+.contact-btn.instagram:hover {
+	background: #b72e5f;
+}
+
+.contact-btn.linkedin:hover {
+	background: #084d9a;
+}
+
+.contact-btn.discord:hover {
+	background: #4752c4;
+}
+
+.contact-btn.github:hover {
+	background: #333;
+}
+
+/* Footer */
+footer {
+	text-align: center;
+	padding: 2rem;
+	font-size: 0.9rem;
+	opacity: 0.6;
+}
+
+/* Responsivity */
+@media (max-width: 768px) {
+	.stars {
+		background: black url('data:image/svg+xml;utf8,<svg width="30" height="30" xmlns="http://www.w3.org/2000/svg"><circle cx="2.5" cy="2.5" r="2.5" fill="rgba(100, 100, 100, 0.8)" /></svg>') repeat;
+		background-size: 2rem 2rem;
+		animation: moveStars 500s linear infinite;
+		mask-image: radial-gradient(circle at top,
+				rgba(255, 255, 255, 0.6) 0%,
+				rgba(255, 255, 255, 0.1) 60%);
+		-webkit-mask-image: radial-gradient(circle at top,
+				rgba(255, 255, 255, 0.6) 0%,
+				rgba(255, 255, 255, 0.1) 60%);
+	}
+
+	nav ul {
+		position: absolute;
+		top: 60px;
+		right: 0;
+		background: rgba(0, 0, 0, 0.95);
+		flex-direction: column;
+		width: 200px;
+		display: none;
+		padding: 1rem;
+	}
+
+	nav ul.active {
+		display: flex;
+	}
+
+	.menu-toggle {
+		display: flex;
+	}
+
+	header {
+		height: 60vh;
+		margin-bottom: -5rem;
+	}
+
+	header h1 {
+		font-family: "Space Grotesk", sans-serif;
+		font-size: 2rem;
+		letter-spacing: -0.15rem;
+	}
+
+	header p {
+		font-size: 1.2rem;
+	}
+
+	.timeline-item,
+	.timeline-item.left,
+	.timeline-item.right {
+		width: 100%;
+		left: 0 !important;
+		text-align: left !important;
+		margin-top: 30px !important;
+        margin-left: 20px;
+	}
+
+	.timeline-line {
+		left: 20px;
+	}
+
+	.timeline-item .content {
+		margin-right: 0px;
+    	margin-left: 0px;
+	}
+
+	.timeline-item .content::after {
+		display: none;
+	}
+
+	.contact-buttons {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.contact-btn {
+		width: 100%;
+		justify-content: center;
+	}
+}
