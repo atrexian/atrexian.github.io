@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Instalace Arch Linuxu — návod</title>
+  <meta name="description" content="Návod na instalaci Arch Linuxu s GNOME nebo KDE Plasma. Tmavé rozhraní, mobilní responzivita." />
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#0f1620;
+      --muted:#98a0ad;
+      --text:#e6eef6;
+      --accent:#45c6b6;
+      --code-bg:#0b1220;
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      --max-width:980px;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, 'Roboto Mono', 'Courier New', monospace;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%;scroll-behavior:smooth}
+    body{
+      background:var(--bg);
+      color:var(--text);
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      padding:24px;
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+      overflow-x:hidden;
+    }
+
+    .site{
+      width:100%;
+      max-width:var(--max-width);
+      min-height:calc(100vh - 48px);
+      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+      border-radius:18px;
+      padding:24px;
+      box-shadow: 0 6px 30px rgba(2,6,23,0.6);
+      border:1px solid rgba(255,255,255,0.05);
+      backdrop-filter: blur(6px);
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    header{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:18px;
+    }
+    .brand{
+      display:flex;gap:12px;align-items:center
+    }
+    .logo{
+      width:46px;height:46px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#6fe3d5);display:grid;place-items:center;color:#052425;font-weight:700;font-family:var(--mono);
+      box-shadow: 0 4px 18px rgba(69,198,182,0.12);
+    }
+    h1.site-title{font-size:18px;margin:0}
+    nav{display:flex;gap:12px;align-items:center}
+    a.btn{
+      color:var(--text);text-decoration:none;padding:8px 12px;border-radius:10px;font-size:14px;border:1px solid rgba(255,255,255,0.05);
+      background:var(--glass);transition:all 0.2s ease-in-out;
+    }
+    a.btn:hover{background:rgba(255,255,255,0.06)}
+
+    .content{
+      flex:1;
+      display:block;
+      padding:18px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.015), transparent);
+      border-radius:12px;
+      overflow:auto;
+    }
+    .main{max-width:100%;}
+    .main h1{font-size:22px;margin:0 0 8px}
+    .main h2{font-size:18px;margin:18px 0 8px;color:var(--accent)}
+    p{color:var(--muted);margin-bottom:12px}
+
+    table{width:100%;border-collapse:collapse;margin:10px 0}
+    th,td{padding:10px;border-bottom:1px dashed rgba(255,255,255,0.05);text-align:left;font-size:15px}
+    thead th{color:var(--text);font-weight:600}
+
+    pre{background:var(--code-bg);padding:12px;border-radius:10px;overflow:auto;color:var(--text);font-family:var(--mono);font-size:14px;margin:10px 0}
+    .color{color:var(--accent);font-weight:600}
+
+    /* responsive table wrapper */
+    .table-wrap{overflow:auto;border-radius:10px}
+
+    /* code copy button */
+    .code-wrap{position:relative}
+    .copy-btn{
+      position:absolute;right:10px;top:10px;
+      background:rgba(255,255,255,0.08);
+      border:none;padding:6px 8px;
+      border-radius:8px;color:var(--text);
+      cursor:pointer;font-size:12px;
+      transition:all 0.2s ease-in-out;
+    }
+    .copy-btn:hover{background:rgba(255,255,255,0.15)}
+    .copy-btn:active{transform:translateY(1px)}
+
+    footer{
+      margin-top:18px;
+      color:var(--muted);
+      font-size:13px;
+      text-align:center;
+      padding-top:12px;
+      border-top:1px solid rgba(255,255,255,0.05);
+    }
+
+    /* small screens */
+    @media (max-width:680px){
+      body{padding:12px}
+      .site{padding:14px;border-radius:12px}
+      .logo{width:40px;height:40px}
+      h1.site-title{font-size:16px}
+      .main h1{font-size:20px}
+      th,td{padding:8px;font-size:14px}
+      pre{font-size:13px}
+      nav{flex-wrap:wrap;justify-content:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <div class="site" role="main">
+    <header>
+      <div class="brand">
+        <div class="logo">AL</div>
+        <div>
+          <h1 class="site-title">Instalace Arch Linuxu — návod</h1>
+          <div style="color:var(--muted);font-size:13px">GNOME · KDE Plasma · Tmavé rozhraní</div>
+        </div>
+      </div>
+      <nav aria-label="hlavní navigace">
+        <a class="btn" href="#4">Přejít na návod</a>
+        <a class="btn" href="#" onclick="window.print();return false">Tisk</a>
+      </nav>
+    </header>
+
+    <div id="4" class="content">
+      <div class="main">
+        <h1>Instalace Arch Linuxu</h1>
+        <p>Návod na instalaci Arch Linuxu s grafickým prostředím GNOME nebo KDE Plasma.</p>
+
+        <h2>1. Nastavení připojení k internetu</h2>
+        <p>Instalace probíhá prostřednictvím internetu, proto je nutné zajistit stabilní připojení:</p>
+        <p>Ověříme připojení:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-ping">Kopírovat</button><pre id="cmd-ping"><code>ping google.com</code></pre></div>
+
+        <p>Pro připojení k Wi‑Fi použijeme nástroj <span class="color">iwctl</span>. Návod najdete <a href="https://wiki.archlinux.org/title/iwd" title="ZDE" target="_blank" rel="noopener">ZDE</a>.</p>
+
+        <h2>2. Nastavení klávesnice a času</h2>
+        <p>Nastavíme české rozložení klávesnice:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-loadkeys">Kopírovat</button><pre id="cmd-loadkeys"><code>loadkeys cz</code></pre></div>
+        <p>Synchronizace času:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-ntp">Kopírovat</button><pre id="cmd-ntp"><code>timedatectl set-ntp true</code></pre></div>
+
+        <h2>3. Příprava disku</h2>
+        <p>Identifikace disků:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-lsblk">Kopírovat</button><pre id="cmd-lsblk"><code>lsblk</code></pre></div>
+        <p>Správa oddílů:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-cfdisk">Kopírovat</button><pre id="cmd-cfdisk"><code>cfdisk /dev/sda</code></pre></div>
+
+        <p>Vytvořte oddíly podle tabulky:</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Oddíl</th>
+                <th>Formát</th>
+                <th>Velikost</th>
+                <th>Popis</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>sda1</td>
+                <td>fat32</td>
+                <td>1GB</td>
+                <td>Boot</td>
+              </tr>
+              <tr>
+                <td>sda2</td>
+                <td>-</td>
+                <td>{VELIKOST VAŠÍ RAM}</td>
+                <td>SWAP</td>
+              </tr>
+              <tr>
+                <td>sda3</td>
+                <td>ext4</td>
+                <td>Zbytek</td>
+                <td>Root</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Formátování oddílů:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-mkfs1">Kopírovat</button><pre id="cmd-mkfs1"><code>mkfs.fat -F 32 /dev/sda1</code></pre></div>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-mkswap">Kopírovat</button><pre id="cmd-mkswap"><code>mkswap /dev/sda2
+swapon /dev/sda2
+mkfs.ext4 /dev/sda3</code></pre></div>
+
+        <p>Připojení oddílů:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-mounts">Kopírovat</button><pre id="cmd-mounts"><code>mount /dev/sda3 /mnt/
+cd /mnt
+mkdir boot
+mount /dev/sda1 boot/</code></pre></div>
+
+        <h2>4. Instalace systému</h2>
+        <p>Aktualizace mirrorlistu:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-reflector">Kopírovat</button><pre id="cmd-reflector"><code>reflector -c Czechia > /etc/pacman.d/mirrorlist</code></pre></div>
+
+        <p>Instalace základních balíčků:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-pacstrap">Kopírovat</button><pre id="cmd-pacstrap"><code>pacstrap -K /mnt base base-devel linux linux-firmware linux-headers nano git grub <br>efibootmgr networkmanager avahi</code></pre></div>
+
+        <p>Vytvoření souboru fstab:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-genfstab">Kopírovat</button><pre id="cmd-genfstab"><code>genfstab -U /mnt >> /mnt/etc/fstab</code></pre></div>
+
+        <p>Přepnutí do nového systému:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-chroot">Kopírovat</button><pre id="cmd-chroot"><code>arch-chroot /mnt</code></pre></div>
+
+        <h2>5. Konfigurace systému</h2>
+        <p>Nastavení časového pásma:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-timezone">Kopírovat</button><pre id="cmd-timezone"><code>ln -sf /usr/share/zoneinfo/Europe/Prague /etc/localtime
+hwclock --systohc</code></pre></div>
+
+        <p>Generování locales:</p>
+        <p>Upravte <span class="color">/etc/locale.gen</span> a odkomentujte řádek:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-localegen">Kopírovat</button><pre id="cmd-localegen"><code>cs_CZ.UTF-8 UTF-8</code></pre></div>
+
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-localegen">Kopírovat</button><pre id="cmd-localegen"><code>locale-gen
+echo "LANG=cs_CZ.UTF-8" > /etc/locale.conf
+echo "KEYMAP=cz" > /etc/vconsole.conf</code></pre></div>
+
+        <p>Hostname ("hostname" nahraďte za jméno Vašeho počítače):</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-hostname">Kopírovat</button><pre id="cmd-hostname"><code>echo "hostname" > /etc/hostname</code></pre></div>
+
+        <p>Konfigurace <span class="color">/etc/hosts</span> (otevřete v editoru):</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-hosts">Kopírovat</button><pre id="cmd-hosts"><code>127.0.0.1   localhost
+::1         localhost
+127.0.1.1   hostname.localdomain hostname</code></pre></div>
+
+        <p>Vytvoření Initramfs:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-mkinitcpio">Kopírovat</button><pre id="cmd-mkinitcpio"><code>mkinitcpio -P</code></pre></div>
+
+        <p>Změna hesla uživatele root:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-passwd">Kopírovat</button><pre id="cmd-passwd"><code>passwd</code></pre></div>
+
+        <p>Instalace GRUB:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-grub">Kopírovat</button><pre id="cmd-grub"><code>grub-install --target=x86_64-efi --efi-directory=/boot/
+grub-mkconfig -o /boot/grub/grub.cfg</code></pre></div>
+
+        <h2>6. Dokončení instalace</h2>
+        <p>Povolení síťových služeb:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-svc">Kopírovat</button><pre id="cmd-svc"><code>systemctl enable NetworkManager.service
+systemctl enable avahi-daemon.service</code></pre></div>
+
+        <p>Restart systému:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-reboot">Kopírovat</button><pre id="cmd-reboot"><code>exit
+umount /mnt/boot
+umount /mnt/
+reboot</code></pre></div>
+
+        <h2>9. První přihlášení do systému</h2>
+        <p>Pro připojení k wifi použijte následující kroky:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-nmcli">Kopírovat</button><pre id="cmd-nmcli"><code>nmcli device
+nmcli device ZAŘÍZENÍ connect JMÉNO_WIFI password HESLO
+ping google.com</code></pre></div>
+
+        <p>Pro vytvoření standardního uživatele:</p>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-user">Kopírovat</button><pre id="cmd-user"><code>useradd -m uzivatel
+passwd uzivatel
+usermod -aG wheel,audio,video,optical,storage,games uzivatel
+pacman -S sudo
+nano /etc/sudoers
+uzivatel ALL=(ALL:ALL) ALL</code></pre></div>
+
+        <h2>8. Instalace GNOME</h2>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-gnome">Kopírovat</button><pre id="cmd-gnome"><code>sudo pacman -S gnome gnome-extra gdm
+sudo systemctl enable gdm
+sudo reboot</code></pre></div>
+
+        <h2>9. Instalace KDE (Plasma)</h2>
+        <div class="code-wrap"><button class="copy-btn" data-target="cmd-kde">Kopírovat</button><pre id="cmd-kde"><code>sudo pacman -S plasma sddm kde-applications
+sudo systemctl enable sddm
+sudo reboot</code></pre></div>
+
+      </div>
+    </div>
+
+    <footer>
+      Ondřej Šmehlík • <span style="color:var(--muted)">Kontakt: ondra.smehlik@gmail.com</span>
+    </footer>
+  </div>
+
+  <script>
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const target = btn.getAttribute('data-target');
+        const el = document.getElementById(target);
+        if(!el) return;
+        const text = el.innerText;
+        try{
+          await navigator.clipboard.writeText(text);
+          btn.innerText = 'Zkopírováno!';
+          setTimeout(()=>btn.innerText='Kopírovat',1400);
+        }catch(e){
+          const ta = document.createElement('textarea');
+          ta.value = text;document.body.appendChild(ta);ta.select();
+          try{document.execCommand('copy');btn.innerText='Zkopírováno!';setTimeout(()=>btn.innerText='Kopírovat',1400);}catch(e){alert('Kopírování selhalo — zkopírujte ručně.')}
+          document.body.removeChild(ta);
+        }
+      })
+    })
+  </script>
+</body>
+</html>
